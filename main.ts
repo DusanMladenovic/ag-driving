@@ -1,5 +1,5 @@
 info.onLifeZero(function () {
-    info.setScore(0)
+    info.setScore(info.highScore())
     game.over(false)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
@@ -153,11 +153,10 @@ scene.setBackgroundImage(img`
     7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
     `)
 info.setLife(2)
-game.onUpdate(function () {
-    info.setScore(info.score())
-})
 game.onUpdateInterval(2000, function () {
     info.changeScoreBy(1)
+})
+game.onUpdateInterval(2000, function () {
     mySprite2 = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . 2 2 2 2 2 2 . . . . 
@@ -201,6 +200,8 @@ game.onUpdateInterval(2000, function () {
 })
 game.onUpdateInterval(4000, function () {
     info.changeScoreBy(1)
+})
+game.onUpdateInterval(4000, function () {
     mySprite4 = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . 1 1 1 1 1 1 1 1 1 1 1 1 . . 
@@ -224,6 +225,8 @@ game.onUpdateInterval(4000, function () {
 })
 game.onUpdateInterval(8000, function () {
     info.changeScoreBy(1)
+})
+game.onUpdateInterval(8000, function () {
     mySprite5 = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . . . . . . . . . . . 
