@@ -1,11 +1,14 @@
-info.onLifeZero(function () {
-    info.setScore(info.highScore())
-    game.over(false)
-})
+namespace SpriteKind {
+    export const RightSide = SpriteKind.create()
+    export const LeftSide = SpriteKind.create()
+}
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    info.changeLifeBy(-1)
+    game.over(false)
+    info.setScore(info.highScore())
 })
 let mySprite5: Sprite = null
+let roadSlice2: Sprite = null
+let roadSlice: Sprite = null
 let mySprite4: Sprite = null
 let mySprite3: Sprite = null
 let mySprite2: Sprite = null
@@ -30,170 +33,48 @@ let mySprite = sprites.create(img`
 controller.moveSprite(mySprite, 75, 0)
 mySprite.setPosition(123, 98)
 mySprite.setStayInScreen(true)
-scene.setBackgroundImage(img`
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111fffffffffffffffffffffffffff111ffffffffffffffffffffffffff11111fffffffffffffffffffffffff111ffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    7777777777777777711111ffffffffffffffffffffffffffffffffffffffffffffffffffffffff11111ffffffffffffffffffffffffffffffffffffffffffffffffffff1111177777777777777777777
-    `)
-info.setLife(2)
+info.setLife(1)
 game.onUpdateInterval(2000, function () {
     info.changeScoreBy(1)
 })
 game.onUpdateInterval(2000, function () {
     mySprite2 = sprites.create(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . 2 2 2 2 2 2 . . . . 
-        . . . . . 2 2 4 4 2 2 2 2 . . . 
-        . . . . . c 4 2 2 2 2 2 c . . . 
-        . . . . 2 c 4 2 2 2 2 2 c 2 . . 
-        . . . e 2 c 4 2 2 2 2 2 c 2 e . 
-        . . . f 2 c 4 2 2 2 2 2 c 2 f . 
-        . . . f e c 2 2 2 2 2 2 c e f . 
-        . . . f 2 c 2 b b b b 2 c 2 f . 
-        . . . e 2 2 b c c c c b 2 2 e . 
-        . . . e e b c c c c c c b e e . 
-        . . . f e 4 4 4 4 4 4 4 4 e f . 
-        . . . f e d 2 2 2 2 2 2 d e f . 
-        . . . . 2 d d 2 2 2 2 d d 2 f . 
-        . . . . f 2 d 2 2 2 2 d 2 f . . 
+        . . . . . . e e c c e e . . . . 
         . . . . . e 2 2 2 2 2 2 e . . . 
+        . . . . 2 c 2 2 2 2 2 2 c 2 . . 
+        . . . e 2 c 4 2 2 2 2 2 c 2 e . 
+        . . . f 2 2 4 2 2 2 2 2 c 2 f . 
+        . . . f 2 2 4 2 2 2 2 2 2 2 f . 
+        . . . f 2 2 4 2 2 2 2 2 2 2 f . 
+        . . . f 2 c 2 4 4 2 2 2 c 2 f . 
+        . . . e 2 c e c c c c e c 2 e . 
+        . . . e 2 e c b b b b c e 2 e . 
+        . . . e 2 e b b b b b b e 2 e . 
+        . . . e e e e e e e e e e e e . 
+        . . . f e d e e e e e e d e f . 
+        . . . f e 2 d e e e e d 2 e f . 
+        . . . f f e e e e e e e e f f . 
+        . . . . f f . . . . . . f f . . 
         `, SpriteKind.Enemy)
-    mySprite2.setPosition(35, -10)
+    mySprite2.setPosition(50, -10)
     mySprite2.setVelocity(0, 100)
     mySprite3 = sprites.create(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . 3 3 3 3 3 3 . . . . 
-        . . . . . 3 3 d d 3 3 3 3 . . . 
-        . . . . . c d 3 3 3 3 3 c . . . 
-        . . . . 3 c d 3 3 3 3 3 c 3 . . 
-        . . . a 3 c d 3 3 3 3 3 c 3 a . 
-        . . . f 3 c d 3 3 3 3 3 c 3 f . 
-        . . . f a c 3 3 3 3 3 3 c a f . 
-        . . . f 3 c 3 b b b b 3 c 3 f . 
-        . . . a 3 3 b c c c c b 3 3 a . 
-        . . . a a b c c c c c c b a a . 
-        . . . f a d d d d d d d d a f . 
-        . . . f a d 3 3 3 3 3 3 d a f . 
-        . . . . 3 d d 3 3 3 3 d d 3 f . 
-        . . . . f 3 d 3 3 3 3 d 3 f . . 
+        . . . . . . a a c c a a . . . . 
         . . . . . a 3 3 3 3 3 3 a . . . 
+        . . . . 3 c 3 3 3 3 3 3 c 3 . . 
+        . . . a 3 c d 3 3 3 3 3 c 3 a . 
+        . . . f 3 3 d 3 3 3 3 3 c 3 f . 
+        . . . f 3 3 d 3 3 3 3 3 3 3 f . 
+        . . . f 3 3 d 3 3 3 3 3 3 3 f . 
+        . . . f 3 c 3 d d 3 3 3 c 3 f . 
+        . . . a 3 c a c c c c a c 3 a . 
+        . . . a 3 a c b b b b c a 3 a . 
+        . . . a 3 a b b b b b b a 3 a . 
+        . . . a a a a a a a a a a a a . 
+        . . . f a d a a a a a a d a f . 
+        . . . f a 3 d a a a a d 3 a f . 
+        . . . f f a a a a a a a a f f . 
+        . . . . f f . . . . . . f f . . 
         `, SpriteKind.Enemy)
     mySprite3.setPosition(96, -40)
     mySprite3.setVelocity(0, 100)
@@ -203,47 +84,77 @@ game.onUpdateInterval(4000, function () {
 })
 game.onUpdateInterval(4000, function () {
     mySprite4 = sprites.create(img`
-        . . . . . . . . . . . . . . . . 
-        . . 1 1 1 1 1 1 1 1 1 1 1 1 . . 
-        . . 1 e e f f f f f f f f 1 . . 
-        . . 1 e f f f f f f f f f 1 . . 
-        . . 1 f f f f f f f f f f 1 . . 
-        . . 1 f f f f f f f f f f 1 . . 
-        . . 1 f f f f f f f f f f 1 . . 
-        . . 1 8 8 9 9 9 9 9 9 9 9 1 . . 
-        . . 1 8 9 9 9 9 9 9 9 9 9 1 . . 
-        . . 1 9 9 9 9 9 9 9 9 9 9 1 . . 
-        . . d d d d d d d d d d d d . . 
-        . . d 5 5 1 1 1 1 1 1 1 5 d . . 
-        . . d 5 1 1 1 1 1 1 1 1 5 d . . 
-        . . d d d d d d d d d d d d . . 
-        . . f f . . . . . . . . f f . . 
-        . . . . . . . . . . . . . . . . 
+        . . . . . . c c c c c c . . . . 
+        . . . . . c b b b b b b c . . . 
+        . . . . b c b b b b b b c b . . 
+        . . . c b c d b b b b b c b c . 
+        . . . f b b d b b b b b c b f . 
+        . . . f b b d b b b b b b b f . 
+        . . . f b b d b b b b b b b f . 
+        . . . f b c b d d b b b c b f . 
+        . . . c b c c c c c c c c b c . 
+        . . . c b c c b b b b c c b c . 
+        . . . c b c b b b b b b c b c . 
+        . . . c c c c c c c c c c c c . 
+        . . . f c d c c c c c c d c f . 
+        . . . f c b d c c c c d b c f . 
+        . . . f f c c c c c c c c f f . 
+        . . . . f f . . . . . . f f . . 
         `, SpriteKind.Enemy)
     mySprite4.setPosition(65, -10)
     mySprite4.setVelocity(0, 50)
+})
+game.onUpdateInterval(100, function () {
+    roadSlice = sprites.createProjectileFromSide(img`
+        777777777777777777777777777777777777777777777777777777777777711111111...........
+        777777777777777777777777777777777888777777777777777777777777711111111...........
+        777777777888777777777777777777777888777777777777777888777777711111111...........
+        777777777888777777777777777777777888777777777777777888777777711111111...........
+        777777777888777777777777777777777777777777777777777888777777711111111...........
+        777777777777777777888777777777777777777777777777777777777777722222222...........
+        777777777777777777888777777777777777777777778887777777777777722222222...........
+        778887777777777777888777777777777777777777778887777777777777722222222...........
+        778887777777777777777777777778887777777777778887777777777777722222222...........
+        778887777777777777777777777778887777777777777777777777777777722222222...........
+        `, 0, 80)
+    roadSlice.right = 50
+    roadSlice.setKind(SpriteKind.RightSide)
+    roadSlice2 = sprites.createProjectileFromSide(img`
+        .............1111111177777777777777777777777777777777777777777777777777777777777
+        .............1111111177777777777788877777777777777777777777777777777777777777777
+        .............1111111177777777777788877777777777777788877777777777777888777777777
+        .............1111111177777777777788877777777777777788877777777777777888777777777
+        .............1111111177777777777777777777777777777788877777777777777888777778887
+        .............2222222277777777777777777777777777777777777777777777777777777778887
+        .............2222222277777777777777777777777888777777777777777777777777777778887
+        .............2222222277777777777777777777777888777777777777788877777777777777777
+        .............2222222277777777888777777777777888777777777777788877777777777777777
+        .............2222222277777777888777777777777777777777777777788877777777777777777
+        `, 0, 80)
+    roadSlice2.right = 200
+    roadSlice2.setKind(SpriteKind.LeftSide)
 })
 game.onUpdateInterval(8000, function () {
     info.changeScoreBy(1)
 })
 game.onUpdateInterval(8000, function () {
     mySprite5 = sprites.create(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . 1 1 1 1 1 1 1 1 1 1 1 1 . . 
-        . . 1 1 1 1 1 1 1 1 1 1 1 1 . . 
-        . . 9 9 9 9 9 9 9 9 9 9 9 9 . . 
-        . . 9 9 9 9 9 9 9 9 9 9 9 9 . . 
-        . . 9 9 9 9 9 9 9 9 9 9 9 9 . . 
-        . . 1 1 1 1 1 1 1 1 1 1 1 1 . . 
-        . . 1 5 1 1 1 1 1 1 1 1 5 1 . . 
-        . . 1 1 5 1 1 1 1 1 1 5 1 1 . . 
-        . . 1 1 1 1 1 1 1 1 1 1 1 1 . . 
-        . . f f . . . . . . . . f f . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
+        . . . . . . 7 7 c c 7 7 . . . . 
+        . . . . . 7 5 5 5 5 5 5 7 . . . 
+        . . . . 5 c 5 5 5 5 5 5 c 5 . . 
+        . . . 7 5 c 9 5 5 5 5 5 c 5 7 . 
+        . . . f 5 5 9 5 5 5 5 5 c 5 f . 
+        . . . f 5 5 9 5 5 5 5 5 5 5 f . 
+        . . . f 5 5 9 5 5 5 5 5 5 5 f . 
+        . . . f 5 c 5 9 9 5 5 5 c 5 f . 
+        . . . 7 5 c 7 c c c c 7 c 5 7 . 
+        . . . 7 5 7 c b b b b c 7 5 7 . 
+        . . . 7 5 7 b b b b b b 7 5 7 . 
+        . . . 7 7 7 7 7 7 7 7 7 7 7 7 . 
+        . . . f 7 d 7 7 7 7 7 7 d 7 f . 
+        . . . f 7 5 d 7 7 7 7 d 5 7 f . 
+        . . . f f 7 7 7 7 7 7 7 7 f f . 
+        . . . . f f . . . . . . f f . . 
         `, SpriteKind.Enemy)
     mySprite5.setVelocity(0, 100)
     mySprite5.setPosition(123, -10)
