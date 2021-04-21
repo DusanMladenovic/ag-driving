@@ -356,7 +356,7 @@ game.onUpdateInterval(4000, function () {
         . . . f f c c c c c c c c f f . 
         . . . . f f . . . . . . f f . . 
         `, SpriteKind.Enemy)
-    mySprite4.setPosition(65, -10)
+    mySprite4.setPosition(70, -10)
     mySprite4.setVelocity(0, 50)
 })
 game.onUpdateInterval(100, function () {
