@@ -289,6 +289,7 @@ controller.moveSprite(mySprite, 75, 0)
 mySprite.setPosition(85, 98)
 mySprite.setStayInScreen(true)
 info.setLife(1)
+info.setScore(0)
 game.onUpdateInterval(2000, function () {
     info.changeScoreBy(3)
 })
