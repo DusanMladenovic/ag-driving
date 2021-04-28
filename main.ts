@@ -286,11 +286,11 @@ let mySprite = sprites.create(img`
     . . . . f f . . . . . . f f . . 
     `, SpriteKind.Player)
 controller.moveSprite(mySprite, 75, 0)
-mySprite.setPosition(123, 98)
+mySprite.setPosition(85, 98)
 mySprite.setStayInScreen(true)
 info.setLife(1)
 game.onUpdateInterval(2000, function () {
-    info.changeScoreBy(1)
+    info.changeScoreBy(3)
 })
 game.onUpdateInterval(2000, function () {
     mySprite2 = sprites.create(img`
@@ -311,7 +311,7 @@ game.onUpdateInterval(2000, function () {
         . . . . f 2 d 2 2 2 2 d 2 f . . 
         . . . . . e 2 2 2 2 2 2 e . . . 
         `, SpriteKind.Enemy)
-    mySprite2.setPosition(50, -10)
+    mySprite2.setPosition(40, -10)
     mySprite2.setVelocity(0, 100)
     mySprite3 = sprites.create(img`
         . . . . . . . . . . . . . . . . 
@@ -331,8 +331,28 @@ game.onUpdateInterval(2000, function () {
         . . . . f 6 d 6 6 6 6 d 6 f . . 
         . . . . . 8 6 6 6 6 6 6 8 . . . 
         `, SpriteKind.Enemy)
-    mySprite3.setPosition(96, -40)
+    mySprite3.setPosition(100, -40)
     mySprite3.setVelocity(0, 100)
+    mySprite4 = sprites.create(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . 5 5 5 5 5 5 . . . . 
+        . . . . . 5 5 7 7 5 5 5 5 . . . 
+        . . . . . 4 7 5 5 5 5 5 4 . . . 
+        . . . . 5 4 7 5 5 5 5 5 4 5 . . 
+        . . . 4 5 4 7 5 5 5 5 5 4 5 4 . 
+        . . . f 5 4 7 5 5 5 5 5 4 5 f . 
+        . . . f 4 4 5 5 5 5 5 5 4 4 f . 
+        . . . f 5 4 5 5 5 5 5 5 4 5 f . 
+        . . . 4 5 5 5 4 4 4 4 5 5 5 4 . 
+        . . . 4 4 5 4 4 4 4 4 4 5 4 4 . 
+        . . . f 4 9 9 9 9 9 9 9 9 4 f . 
+        . . . f 4 1 5 5 5 5 5 5 1 4 f . 
+        . . . . 5 1 1 5 5 5 5 1 1 5 f . 
+        . . . . f 5 1 5 5 5 5 1 5 f . . 
+        . . . . . 4 5 5 5 5 5 5 4 . . . 
+        `, SpriteKind.Enemy)
+    mySprite4.setPosition(80, -10)
+    mySprite4.setVelocity(0, 75)
 })
 game.onUpdateInterval(4000, function () {
     info.changeScoreBy(1)
@@ -356,7 +376,7 @@ game.onUpdateInterval(4000, function () {
         . . . . f b d b b b b d b f . . 
         . . . . . c b b b b b b c . . . 
         `, SpriteKind.Enemy)
-    mySprite4.setPosition(70, -10)
+    mySprite4.setPosition(60, -10)
     mySprite4.setVelocity(0, 50)
 })
 game.onUpdateInterval(100, function () {
@@ -412,5 +432,5 @@ game.onUpdateInterval(8000, function () {
         . . . . . 5 7 7 7 7 7 7 5 . . . 
         `, SpriteKind.Enemy)
     mySprite5.setVelocity(0, 100)
-    mySprite5.setPosition(123, -10)
+    mySprite5.setPosition(120, -10)
 })
