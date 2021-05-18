@@ -478,7 +478,7 @@ game.onUpdateInterval(2000, function () {
         . . . . . 4 5 5 5 5 5 5 4 . . . 
         `, SpriteKind.Enemy)
     car3.setPosition(80, -10)
-    car3.setVelocity(0, 75)
+    car3.setVelocity(0, 80)
 })
 game.onUpdateInterval(4000, function () {
     info.changeScoreBy(1)
@@ -503,7 +503,7 @@ game.onUpdateInterval(4000, function () {
         . . . . . c b b b b b b c . . . 
         `, SpriteKind.Enemy)
     car4.setPosition(60, -10)
-    car4.setVelocity(0, 50)
+    car4.setVelocity(0, 120)
 })
 game.onUpdateInterval(100, function () {
     roadSlice = sprites.createProjectileFromSide(img`
@@ -535,10 +535,10 @@ game.onUpdateInterval(100, function () {
     roadSlice2.right = 200
     roadSlice2.setKind(SpriteKind.LeftSide)
 })
-game.onUpdateInterval(8000, function () {
+game.onUpdateInterval(3000, function () {
     info.changeScoreBy(1)
 })
-game.onUpdateInterval(8000, function () {
+game.onUpdateInterval(3000, function () {
     car5 = sprites.create(img`
         . . . . . . . . . . . . . . . . 
         . . . . . . 7 7 7 7 7 7 . . . . 
